@@ -1,6 +1,12 @@
 <template>
   <div class="app-container">
     <el-form ref="form" :model="form" label-width="120px" v-loading="loading">
+    <el-form-item label="学生学号" prop="studentId">
+      <el-input 
+        v-model="form.studentId"  
+        placeholder="请输入学号"
+      />
+    </el-form-item>
       <el-form-item label="用户名">
         <el-input v-model="form.name" />
       </el-form-item>
@@ -40,6 +46,7 @@ export default {
       form: {
         name: "",
         sex: "",
+        studentId: "",
       },
       imageUrl: "",
       imageBase64: "",
@@ -62,6 +69,13 @@ export default {
         });
         return false;
       }
+      if (this.form.studentId == "") {
+        this.$message({
+          message: "学号不能为空",
+          type: "warning",
+        });
+        return false;
+      }
       if (this.imageBase64 == "") {
         this.$message({
           message: "请选择图片",
@@ -73,6 +87,9 @@ export default {
         face_user: this.form.name,
         face_sex: this.form.sex,
         face_base64: this.imageBase64,
+        face_Id: this.form.studentId,
+
+        // 4/5 revise
       };
       this.loading = true;
       faceDesign(faceObj).then((rep) => {
@@ -115,6 +132,7 @@ export default {
       }
       return isJPG && isLt2M;
     },
+    
   },
 };
 </script>

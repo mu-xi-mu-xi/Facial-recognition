@@ -7,4 +7,5 @@ public class faceObj {
     private String face_user;
     private String face_sex;
     private String face_base64;
+    private String face_Id;
 }

@@ -11,8 +11,8 @@ import java.util.List;
 public interface userinfoReponsitory extends JpaRepository<UserInfo,String> {
     @Modifying
     @Transactional
-    @Query(value = "insert into user_info values (?1,?2,?3)",nativeQuery = true)
-    public int addUserinfo(String name,String sex,String flag);
+    @Query(value = "insert into user_info values (?1,?2,?3,?4)",nativeQuery = true)
+    public int addUserinfo(String name,String sex,String flag,String id);
 
     public List<UserInfo> findAllByUserFlag(String userflag);
     @Modifying

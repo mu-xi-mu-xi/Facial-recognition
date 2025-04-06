@@ -7,6 +7,9 @@
           <span style="margin-left: 10px">{{ scope.$index + 1 }}</span>
         </template>
       </el-table-column>
+
+     
+      </el-table-column>
       <el-table-column label="用户名" width="180">
         <template slot-scope="scope">
           <el-popover trigger="hover" placement="top">
@@ -22,6 +25,13 @@
           <span style="margin-left: 10px">{{ scope.row.userSex }}</span>
         </template>
       </el-table-column>
+
+      <el-table-column label="学号" width="200">
+        <template slot-scope="scope">
+          <span>{{ scope.row.studentId  || '未录入' }}</span>
+        </template>
+      </el-table-column>
+
       <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button size="mini" @click="open(scope.$index, scope.row)"
@@ -45,6 +55,19 @@ export default {
   data() {
     return {
       tableData: [],
+      dialogVisible: false,
+    formData: {
+      userName: '',
+      studentId: '',
+      userSex: '男'
+    },
+    rules: {
+      studentId: [
+        { required: true, message: '学号不能为空', trigger: 'blur' },
+        { pattern: /^\d{10}$/, message: '必须是10位数字', trigger: 'blur' }
+      ]
+    }
+  
     };
   },
   created() {
@@ -104,6 +127,23 @@ export default {
       });
         
       }
+  },
+  openAddDialog() {
+    this.dialogVisible  = true 
+    this.formData  = { /* 重置表单数据 */ }
+  },
+  
+  // 提交表单 
+  handleSubmit() {
+    this.$refs.form.validate(valid  => {
+      if (valid) {
+        // 调用新增API 
+        addStudent(this.formData).then(()  => {
+          this.fetchData()  // 重新加载数据 
+          this.dialogVisible  = false 
+        })
+      }
+    })
   },
 };
 </script>

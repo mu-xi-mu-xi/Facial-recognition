@@ -18,3 +18,10 @@ export function delface(username) {
         method: 'get'
     })
 }
+export function addStudent(data) {
+    return request({
+      url: '/api/students',
+      method: 'post',
+      data 
+    })
+  }

@@ -8,7 +8,8 @@ const router = new Router({
   mode: "history",
   base: process.env.BASE_URL,
   routes,
-});
+}
+);
 
 router.beforeEach((to, from, next) => {
   next();
@@ -19,3 +20,4 @@ router.afterEach(() => {
 });
 
 export default router;
+

@@ -105,6 +105,7 @@ public class userController {
                 UserInfo userInfo = new UserInfo();
                 userInfo.setUserName(faceObj.getFace_user());
                 userInfo.setUserSex(faceObj.getFace_sex());
+                userInfo.setUserId(faceObj.getFace_Id());
                 try {
                     adminService.insertUser(userInfo);
                     List<String> userList= new ArrayList<>();

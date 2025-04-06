@@ -17,6 +17,7 @@ public class UserInfo {
   private String userSex;
   @Column(name = "user_flag")
   private String userFlag;
-
+  @Column(name = "studentid")
+  private String userId;
 
 }

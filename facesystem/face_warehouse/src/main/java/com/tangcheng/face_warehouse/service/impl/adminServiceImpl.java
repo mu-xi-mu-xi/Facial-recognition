@@ -61,7 +61,7 @@ public class adminServiceImpl implements adminService {
 
     @Override
     public void insertUser(UserInfo userInfo) {
-        userinfoReponsitory.addUserinfo(userInfo.getUserName(),userInfo.getUserSex(),"0");
+        userinfoReponsitory.addUserinfo(userInfo.getUserName(),userInfo.getUserSex(),"0",userInfo.getUserId());
     }
 
     @Override
